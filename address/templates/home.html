@@ -1,7 +1,22 @@
 {% extends 'base.html' %}
 
-{% block 'content' %} 
+{% block 'content' %}
 
-	<h1>Address Home Page</h1>
+<h1>Contacts - Addresses</h1>
+<br/>
+	{% if all_contacts %}
+		<table class="table" table-bordered>
+			{% for records in all_contacts %}
+				<tr>
+					<td>{{ records.name }}</td>
+					<td>{{ records.address }}</td>
+					<td>{{ records.city }}</td>
+					<td>{{ records.state }}</td>
+					<td>{{ records.zipcode }}</td>
+					<td><a href="#">Edit</a></td>
+				</tr>					
+			{% endfor %}
+		</table>	
+	{% endif %}
 
 {% endblock %}
