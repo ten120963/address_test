@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Contacts - Edit Address{% endblock %}
+
+{% block 'content' %} 
+
+	<h1>Edit Address</h1>
+	<br/><br/>
+	{% if get_contact %}
+		<form method="POST">
+		  {% csrf_token %}
+		  <div class="form-group">	    
+		    <input type="text" class="form-control" value="{{ get_contact.name }}" name="name"><br/>	  
+		    <input type="text" class="form-control" value="{{ get_contact.address }}" name="address"><br/>	   
+		    <input type="text" class="form-control" value="{{ get_contact.city }}" name="city"><br/>   
+		    <input type="text" class="form-control" value="{{ get_contact.state }}" name="state"><br/>	   
+		    <input type="text" class="form-control" value="{{ get_contact.zipcode }}" name="zipcode"><br/>
+		  </div>	  
+		  <br/>
+		  <button type="submit" class="btn btn-primary">Update</button>
+		</form>
+		<br/>
+		<br/>
+		<form method="POST" action="{% url 'delete' get_contact.id %}">
+			{% csrf_token %}
+			<input type="hidden" value="{{ get_contact.id }}" name="id">
+			<button type="submit" class="btn btn-primary">Delete Contact</button>
+		</form>	
+	{% endif %}
+	
+{% endblock %}
