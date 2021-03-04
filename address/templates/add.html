@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
 
-{% block 'content' %} 
+{% block content %} 
 
 	<h1>Add Address</h1>
 	<br/><br/>
 	<form action="{% url 'add' %}" method="POST">
 	  {% csrf_token %}
 	  <div class="form-group">	    
-	    <input type="text" class="form-control" placeholder="Enter Name" name="name">	  
-	    <input type="text" class="form-control" placeholder="Enter Address" name="address">	   
-	    <input type="text" class="form-control" placeholder="Enter City" name="city">	   
-	    <input type="text" class="form-control" placeholder="Enter State" name="state">	   
-	    <input type="text" class="form-control" placeholder="Enter Zip Code" name="zipcode">
+	    <input type="text" class="form-control" placeholder="Enter Name" name="name"><br/>	  
+	    <input type="text" class="form-control" placeholder="Enter Address" name="address"><br/>  
+	    <input type="text" class="form-control" placeholder="Enter City" name="city"><br/>   
+	    <input type="text" class="form-control" placeholder="Enter State" name="state"><br/>   
+	    <input type="text" class="form-control" placeholder="Enter Zip Code" name="zipcode"><br/>
 	  </div>	  
 	  <br/>
 	  <button type="submit" class="btn btn-primary">Submit</button>

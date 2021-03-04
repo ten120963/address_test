@@ -22,8 +22,8 @@ def add(request):
 
 def edit(request, list_id):
 	if request.method == "POST":
-		current_contact = Contact.objects.get(pk=list_id)
-		form = ContactForm(request.POST or None, instance=current_contact)
+		get_contact = Contact.objects.get(pk=list_id)
+		form = ContactForm(request.POST or None, instance=get_contact)
 		if form.is_valid():
 			form.save()
 			messages.success(request, ('Contact Has Been Edited!'))
