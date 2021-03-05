@@ -2,10 +2,14 @@ from django.shortcuts import render, redirect
 from .models import Contact
 from .forms import ContactForm
 from django.contrib import messages
+from django.views.generic import TemplateView, ListView
+from django.db.models import Q 
 
+'''
 def home(request):
 	all_contacts = Contact.objects.all
 	return render(request, 'home.html', {'all_contacts': all_contacts})
+'''
 
 def add(request):
 	if request.method == "POST":
@@ -43,5 +47,18 @@ def delete(request, list_id):
 		return redirect('home')
 	else:
 		messages.success(request, ('Nothing To See Here...'))	
-		return redirect('home')			
+		return redirect('home')	
 
+class HomePageView(TemplateView):
+    template_name = 'home.html'
+
+class SearchResultsView(ListView):
+    model = Contact
+    template_name = 'search_results.html'
+
+    def get_queryset(self): # new
+        query = self.request.GET.get('q')
+        object_list = Contact.objects.filter(
+            Q(name__icontains=query) | Q(address=query) | Q(city=query) | Q(state__icontains=query) | Q(zipcode__icontains=query)
+        )
+        return object_list

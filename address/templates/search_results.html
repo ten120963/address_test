@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	<title>Contacts - Addresses</title>
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+	<h1>Contacts - Addresses</h1>
+	<br/>
+		{% if object_list %}
+			<table class="table" table-bordered>
+				{% for contact in object_list %}
+					<tr>
+						<td>{{ contact.name }}</td>
+						<td>{{ contact.address }}</td>
+						<td>{{ contact.city }}</td>
+						<td>{{ contact.state }}</td>
+						<td>{{ contact.zipcode }}</td>
+						{% if user.is_authenticated %}
+							<td><a href="{% url 'edit' contact.id %}">Edit</a></td>
+						{% endif %}	
+					</tr>					
+				{% endfor %}
+			</table>	
+		{% endif %}
+
+{% else %}
+
+	<h1>Contacts</h1>
+
+{% endif %}
+
+
+{% endblock %}
